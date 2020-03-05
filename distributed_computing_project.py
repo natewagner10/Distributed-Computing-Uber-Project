@@ -32,7 +32,7 @@ def string_split(line):
 
 full_data_uber_2014 = full_data_uber_2014.map(string_split)
 
-# 
+
 from datetime import date
 import datetime
  
@@ -59,6 +59,14 @@ filter_for_april = full_data_uber_2014.filter(lambda x: x[0].month == 4)
 filter_for_april.take(5)
 
 
+# compute the average number trips per day in April:
+def map_day(line):
+    return (line[0].day, 1)
+
+def reducer(left, right):
+    return left + right
+
+average_trips_per_day_april = full_data_uber_2014.filter(lambda x: x[0].month == 4).map(map_day).reduceByKey(reducer)
 
 
 
