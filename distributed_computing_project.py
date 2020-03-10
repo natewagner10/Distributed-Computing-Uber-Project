@@ -6,6 +6,12 @@ Created on Wed Mar  4 12:49:49 2020
 @author: natewagner
 """
 
+# to run in command line=====
+
+import pyspark
+
+sc = pyspark.SparkContext("local[*]", "uber")
+
 
 # load in data
 
