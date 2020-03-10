@@ -77,6 +77,11 @@ average_trips_per_day_april = full_data_uber_2014.filter(lambda x: x[0].month ==
 
 
 
+# to convert to a dataframe=====
+
+full_data_uber_2014_df = full_data_uber_2014.toDF()
+
+
 
 # cleaning 2015 data
 full_data_uber_2015 = uber_janjun15.filter(lambda x: x!= 'Dispatching_base_num,Pickup_date,Affiliated_base_num,locationID')
