@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Mar  4 12:49:49 2020
-
 @author: natewagner
 """
 
@@ -72,13 +71,16 @@ def map_day(line):
 def reducer(left, right):
     return left + right
 
-average_trips_per_day_april = full_data_uber_2014.filter(lambda x: x[0].month == 4).map(map_day).reduceByKey(reducer)
+total_trips_per_day_april = full_data_uber_2014.filter(lambda x: x[0].month == 4).map(map_day).reduceByKey(reducer)
 
 
 def mapper(line):
     return (line[0], line[0].month, line[1], line[2], line[3])
 
 full_data_uber_2014_with_month = full_data_uber_2014.map(mapper)
+
+
+
 
 # to convert to a dataframe=====
 
@@ -88,9 +90,18 @@ full_data_uber_2014_df = full_data_uber_2014_with_month.toDF()
 full_data_uber_2014_df = full_data_uber_2014_df.selectExpr("_1 as datetime", "_2 as month", "_3 as lat", "_4 as lng", "_5 as base")
 
 
+# Average number of trips per month 2014
+
+full_data_uber_2014_df.createOrReplaceTempView("uber2014")
+
+total_trips_per_month_2014 = sqlContext.sql("select month, count(month) number_trips from uber2014 group by month order by number_trips desc")
+total_trips_per_month_2014.show(6)
+
+
+
+
+
+
 # cleaning 2015 data
 full_data_uber_2015 = uber_janjun15.filter(lambda x: x!= 'Dispatching_base_num,Pickup_date,Affiliated_base_num,locationID')
-
-
-
 
