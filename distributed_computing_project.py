@@ -85,7 +85,7 @@ full_data_uber_2014_with_month = full_data_uber_2014.map(mapper)
 full_data_uber_2014_df = full_data_uber_2014_with_month.toDF()
 
 # set col names
-full_data_uber_2014_df = full_data_uber_2014_df.selectExpr("_1 as datetime", "_2 as lat", "_3 as lng", "_4 as base")
+full_data_uber_2014_df = full_data_uber_2014_df.selectExpr("_1 as datetime", "_2 as month", "_3 as lat", "_4 as lng", "_5 as base")
 
 
 # cleaning 2015 data
