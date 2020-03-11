@@ -81,6 +81,8 @@ average_trips_per_day_april = full_data_uber_2014.filter(lambda x: x[0].month ==
 
 full_data_uber_2014_df = full_data_uber_2014.toDF()
 
+# set col names
+full_data_uber_2014_df = full_data_uber_2014_df.selectExpr("_1 as datetime", "_2 as lat", "_3 as lng", "_4 as base")
 
 
 # cleaning 2015 data
