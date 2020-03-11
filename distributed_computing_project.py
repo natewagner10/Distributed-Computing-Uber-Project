@@ -75,11 +75,14 @@ def reducer(left, right):
 average_trips_per_day_april = full_data_uber_2014.filter(lambda x: x[0].month == 4).map(map_day).reduceByKey(reducer)
 
 
+def mapper(line):
+    return (line[0], line[0].month, line[1], line[2], line[3])
 
+full_data_uber_2014_with_month = full_data_uber_2014.map(mapper)
 
 # to convert to a dataframe=====
 
-full_data_uber_2014_df = full_data_uber_2014.toDF()
+full_data_uber_2014_df = full_data_uber_2014_with_month.toDF()
 
 # set col names
 full_data_uber_2014_df = full_data_uber_2014_df.selectExpr("_1 as datetime", "_2 as lat", "_3 as lng", "_4 as base")
