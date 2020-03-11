@@ -105,3 +105,46 @@ total_trips_per_month_2014.show(6)
 # cleaning 2015 data
 full_data_uber_2015 = uber_janjun15.filter(lambda x: x!= 'Dispatching_base_num,Pickup_date,Affiliated_base_num,locationID')
 
+
+
+
+
+
+# to get first week of April:
+
+filter_for_1st_week_april = full_data_uber_2014.filter(lambda x: x[0].month == 4 and x[0].day < 8)
+
+def mapper(line):
+    return (line[0], line[0].isoweekday(), line[1], line[2], line[3])
+
+first_week_april_with_day = filter_for_1st_week_april.map(mapper)
+
+
+def mapper(line):
+    if line[1] == 1:
+        day = "Monday"
+    if line[1] == 2:
+        day = "Tuesday"
+    if line[1] == 3:
+        day = "Wednesday"
+    if line[1] == 4:
+        day = "Thursday"
+    if line[1] == 5:
+        day = "Friday"
+    if line[1] == 6:
+        day = "Saturday"
+    if line[1] == 7:
+        day = "Sunday"
+    return (line[0], day, line[2], line[3], line[4])
+
+first_week_april_with_dayname = first_week_april_with_day.map(mapper)
+first_week_april_with_dayname_df = first_week_april_with_dayname.toDF()
+first_week_april_with_dayname_df.createOrReplaceTempView("april2014")
+
+total_trips_perDay_FWO_april = sqlContext.sql("select _2, count(_2) total_trips from april2014 group by _2 order by total_trips desc")
+total_trips_perDay_FWO_april.show(8)
+
+
+# write to csv to move to R
+#import pandas as pd
+#first_week_april_with_dayname_df.toPandas().to_csv('first_week_april_with_dayname_df.csv')
