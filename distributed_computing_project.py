@@ -147,7 +147,7 @@ total_trips_perDay_FWO_april.show(8)
 
 # write to csv to move to R
 #import pandas as pd
-#first_week_april_with_dayname_df.toPandas().to_csv('first_week_april_with_dayname_df.csv')
+#total_trips_perDay_FWO_april.toPandas().to_csv('first_week_april_with_dayname_df.csv')
 
 # bash command to move data from server to local:
 # scp nate@10.10.11.35:/home/nate/first_week_april_with_dayname_df.csv /Users/natewagner/Documents
