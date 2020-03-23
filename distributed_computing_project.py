@@ -79,7 +79,10 @@ def mapper(line):
 
 full_data_uber_2014_with_month = full_data_uber_2014.map(mapper)
 
+def mapper(line):
+    return line[0], float(line[1]), float(line[2]), line[3]
 
+full_data_uber_2014 = full_data_uber_2014.map(mapper)
 
 
 # to convert to a dataframe=====
