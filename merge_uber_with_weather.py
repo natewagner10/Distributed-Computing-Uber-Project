@@ -51,6 +51,6 @@ left_join.show(5)
 #left_join.toPandas().to_csv('uber_data_with_weather.csv')
 
 
-
+rddd = left_join.rdd.map(tuple)
 
 
