@@ -37,16 +37,15 @@ weather_clean_time2_df = weather_clean_time2.toDF()
 
 
 full_data_uber_2014_time_df = full_data_uber_2014_time_df.selectExpr("_1 as datetime", "_2 as month", "_3 as day", "_4 as hour", "_5 as lat", "_6 as lng", "_7 as base")
-weather_clean_time2_df = weather_clean_time2_df.selectExpr("_1 as datetime1", "_2 as month", "_3 as day", "_4 as hour", "_5 as humidity", "_6 as wind", "_7 as temp", "_8 as description") 
+weather_clean_time2_df = weather_clean_time2_df.selectExpr("_1 as datetime1", "_2 as month1", "_3 as day1", "_4 as hour1", "_5 as humidity", "_6 as wind", "_7 as temp", "_8 as description") 
 
 
 left_join = full_data_uber_2014_time_df.join(weather_clean_time2_df, (full_data_uber_2014_time_df.month == weather_clean_time2_df.month) & (full_data_uber_2014_time_df.day == weather_clean_time2_df.day) & (full_data_uber_2014_time_df.hour == weather_clean_time2_df.hour), how='left_outer') 
-left_join.show(5)
 
 left_join = left_join.drop('datetime1')
-left_join = left_join.drop('month')
-left_join = left_join.drop('day')
-left_join = left_join.drop('hour')
+left_join = left_join.drop('month1')
+left_join = left_join.drop('day1')
+left_join = left_join.drop('hour1')
 left_join.show(5)
 
 #left_join.toPandas().to_csv('uber_data_with_weather.csv')
