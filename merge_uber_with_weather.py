@@ -79,5 +79,8 @@ rddd1_df.createOrReplaceTempView("uber2014")
 test = sqlContext.sql("select mean(temp), month, day from uber2014 group by month, day order by month, day")
 
 
+def mapper(line):
+    
+
 
 
