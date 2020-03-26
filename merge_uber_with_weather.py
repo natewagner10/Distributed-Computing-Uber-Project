@@ -89,23 +89,23 @@ rddd_temp_fixed_rain = rddd_temp_fixed.map(rain)
 
 # get month, day and hour and map
 def getTime(line):
-    return line[0], line[0].month, line[0].day, line[0].hour, line[1], line[2], line[3], line[4], line[5], line[6], line[7]
+    return line[0], line[0].month, line[0].day, line[0].hour, line[1], line[2], line[3], line[4], line[5], line[6], line[7], line[8]
 
-rddd1 = rddd.map(getTime)
+rddd_temp_fixed_rain1 = rddd_temp_fixed_rain.map(getTime)
 
 # move back to dataframe
-rddd1_df = rddd1.toDF()
+rddd_temp_fixed_rain1_df = rddd_temp_fixed_rain1.toDF()
 
 # set columns 
-rddd1_df = rddd1_df.selectExpr("_1 as datetime1", "_2 as month", "_3 as day", "_4 as hour", "_5 as lat",  "_6 as lng", "_7 as base", "_8 as humidity", "_9 as wind", "_10 as temp", "_11 as description")
-rddd1_df.show(5)
+rddd_temp_fixed_rain1_df = rddd_temp_fixed_rain1_df.selectExpr("_1 as datetime1", "_2 as month", "_3 as day", "_4 as hour", "_5 as lat",  "_6 as lng", "_7 as base", "_8 as humidity", "_9 as wind", "_10 as temp", "_11 as description", "_12 as rain")
+rddd_temp_fixed_rain1_df.show(5)
 
 # to compute mean temperature by day by month for 2014
-rddd1_df.createOrReplaceTempView("uber2014")
+rddd_temp_fixed_rain1_df.createOrReplaceTempView("uber2014")
 test = sqlContext.sql("select mean(temp), month, day from uber2014 group by month, day order by month, day")
 
 
-def mapper(line):
+
     
 
 
