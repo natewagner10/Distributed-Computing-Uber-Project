@@ -68,6 +68,25 @@ rddd_temp_fixed = rddd.map(fixTemp)
 rddd_temp_fixed.take(5)
 
 
+# to make rain/no rain variable:
+
+def rain(line):
+    if line[7] == "scattered clouds" or line[7] == "sky is clear" or line[7] == "broken clouds" or line[7] == "haze" or line[7] == "few clouds" or line[7] == "overcast clouds" or line[7] == "mist" or line[7] == "fog" or line[7] == "dust" or line[7] == "smoke":
+        dummy = "no rain"
+    else:
+        dummy = "rain"
+    return line[0], line[1], line[2], line[3], line[4], line[5], line[6], line[7], dummy
+
+
+rddd_temp_fixed_rain = rddd_temp_fixed.map(rain)
+
+
+
+
+
+
+################################ wrote this before fixing temp and adding rain ##################################
+
 # get month, day and hour and map
 def getTime(line):
     return line[0], line[0].month, line[0].day, line[0].hour, line[1], line[2], line[3], line[4], line[5], line[6], line[7]
