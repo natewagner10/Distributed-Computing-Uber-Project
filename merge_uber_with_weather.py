@@ -18,7 +18,8 @@ import datetime
 
 # setup datetime object and map
 def fix_time(line):
-    return (datetime.datetime.strptime(line[0], '%m/%d/%y %H:%M'), line[1], line[2], line[3], line[4])
+    #return (datetime.datetime.strptime(line[0], '%m/%d/%y %H:%M'), line[1], line[2], line[3], line[4])
+    return (datetime.datetime.strptime(line[0], '%Y-%m-%d %H:%M:%S'), line[1], line[2], line[3], line[4])
     
 weather_clean_time = weather_clean.map(fix_time)
 
