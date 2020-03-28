@@ -64,7 +64,7 @@ rddd = left_join.rdd.map(tuple)
 # to convert temp
 def fixTemp(line):
     #return line[0], line[1], line[2], line[3], float(line[4]), float(line[5]), round((float(line[6]) - 273.15) * 9/5 + 32, 2), line[7]
-    return line[0], line[1], line[2], line[3], float(line[4]), float(line[5]), line[6], line[7]
+    return line[0], line[1], line[2], line[3], float(line[4]), float(line[5]), float(line[6]), line[7]
     
 rddd_temp_fixed = rddd.map(fixTemp)
 rddd_temp_fixed.take(5)
