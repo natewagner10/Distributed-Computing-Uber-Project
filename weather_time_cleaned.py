@@ -2,7 +2,7 @@
 
 weather = sc.textFile("uber_weather.csv")
 
-weather = weather.filter(lambda x: x!= 'datetime,lat, lng, base, humidity,wind,temp,description')
+weather = weather.filter(lambda x: x!= 'datetime,lat,lng,base,humidity,wind,temp,description')
 
 
 def clean_weather(line):
