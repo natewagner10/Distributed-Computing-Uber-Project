@@ -12,7 +12,7 @@ weather_clean = weather.map(clean_weather)
 
 from datetime import date
 import datetime
-dateutil import parser
+from dateutil import parser
 
 def fix_time(line):
     return(parser.parse(line[0]), float(line[1]), float(line[2]), line[3], float(line[4]), float(line[5]), float(line[6]), line[7])
