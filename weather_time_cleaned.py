@@ -36,7 +36,7 @@ def rain(line):
 weather_days_rain = weather_days.map(rain)
 
 def floater(line):
-    return line[0], line[1], line[2], line[3], line[4], line[5], float(line[6]), float(line[7]), float(line[8]), line[9], line[10] 
+    return line[0], line[1], line[2], line[3], line[4], line[5], line[6], line[7], line[8], line[9], line[10] 
 
 
 weather1 = weather_days_rain.map(floater)
