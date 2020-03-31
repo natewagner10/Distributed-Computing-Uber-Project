@@ -15,7 +15,7 @@ import datetime
 from dateutil import parser
 
 def fix_time(line):
-    return(parser.parse(line[0]), float(line[1]), float(line[2]), line[3], float(line[4]), float(line[5]), float(line[6]), line[7])
+    return(parser.parse(line[0]), line[1], line[2]), line[3], line[4], line[5], line[6], line[7])
 
 weather = weather_clean.map(fix_time)
 
