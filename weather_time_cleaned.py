@@ -4,6 +4,12 @@ weather = sc.textFile("uber_weather.csv")
 
 weather = weather.filter(lambda x: x!= 'datetime,lat, lng, base, humidity,wind,temp,description')
 
+
+def clean_weather(line):
+    return line.split(",")
+
+weather_clean = weather.map(clean_weather)
+
 from datetime import date
 import datetime
 dateutil import parser
