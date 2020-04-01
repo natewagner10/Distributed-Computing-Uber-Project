@@ -87,7 +87,7 @@ weather_df.show(5)
 weather_df.createOrReplaceTempView("uber2014")
 
 
-test = sqlContext.sql("select day, month, rain, count(rain) number_trips from uber2014 group by day, month, rain order by day desc")
+test = sqlContext.sql("select borough, day, month, rain, count(rain) number_trips from uber2014 group by day, month, rain order by day desc")
 test.createOrReplaceTempView("counttrips")
 
 
