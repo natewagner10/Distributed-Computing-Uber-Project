@@ -80,7 +80,7 @@ latlongagain = latlong.map(point)
 weather_df = latlongagain.toDF()
 
 
-weather_df = weather_df.selectExpr("_1 as datetime1", "_2 as day", "_3 as month", "_4 as lat", "_5 as lng",  "_6 as base", "_7 as humidity", "_8 as wind", "_9 as temp", "_10 as desc", "_11 as rain")
+weather_df = weather_df.selectExpr("_1 as datetime1", "_2 as day", "_3 as month", "_4 as lat", "_5 as lng",  "_6 as base", "_7 as humidity", "_8 as wind", "_9 as temp", "_10 as desc", "_11 as rain", "_12 as latlng", "_13 as borough")
 weather_df.show(5)
 
 
