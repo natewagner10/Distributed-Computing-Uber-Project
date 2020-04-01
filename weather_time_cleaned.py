@@ -86,10 +86,10 @@ weather_df.show(5)
 
 weather_df.createOrReplaceTempView("uber2014")
 
-
-test = sqlContext.sql("select borough, day, month, rain, count(rain) number_trips from uber2014 group by day, month, rain order by day desc")
+bor_rain = sqlContext.sql("select borough, day, month, rain, count(rain) number_trips from uber2014 group by day, month, borough, rain order by day desc")
+test = sqlContext.sql("select day, month, rain, count(rain) number_trips from uber2014 group by day, month, rain order by day desc")
 test.createOrReplaceTempView("counttrips")
-
+bor_rain.createOrReplaceTempView("counttrips_borough")
 
 average_trips_per_day = sqlContext.sql("select mean(number_trips) mean_num_trips from counttrips")
 average_trips_per_day_with_rain = sqlContext.sql("select rain, mean(number_trips) mean_num_trips from counttrips group by rain")
