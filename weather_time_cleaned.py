@@ -40,7 +40,38 @@ def floater(line):
 
 
 weather1 = weather_days_rain.map(floater)
-weather_df = weather1.toDF()
+
+##############################################
+import pandas as pd
+from shapely.geometry import Point, Polygon
+import geopandas as gpd
+import fiona as fiona
+#getting lat and long in proper format
+def latlong(line):
+     new = float(line[4]), float(line[3])
+     return line[0], line[1], line[2], line[3], line[4], line[5], line[6], line[7], float(line[8]), line[9], line[10], new
+latlong = weather1.map(latlong)
+def point(line):
+     poly = gpd.GeoDataFrame.from_file('geo_export_b697b323-ce5d-4268-8623-7712a657fd85.shp')
+     point = Point(line[11])
+     if poly.contains(point)[0] == True:
+         boro = "Bronx"
+     if poly.contains(point)[1] == True:
+         boro = "Staten Island"
+     if poly.contains(point)[2] == True:
+         boro = "Brooklyn"
+     if poly.contains(point)[3] == True:
+         boro = "Queens"
+     if poly.contains(point)[4] == True:
+         boro = "Manhattan"
+     else:
+         boro = "Other"
+     return line[0], line[1], line[2], line[3], line[4], line[5], line[6], line[7], line[8], line[9], line[10],line[11], boro
+latlongagain = latlong.map(point)
+##############################################
+
+
+weather_df = latlongagain.toDF()
 
 
 weather_df = weather_df.selectExpr("_1 as datetime1", "_2 as day", "_3 as month", "_4 as lat", "_5 as lng",  "_6 as base", "_7 as humidity", "_8 as wind", "_9 as temp", "_10 as desc", "_11 as rain")
