@@ -95,7 +95,7 @@ average_trips_per_day = sqlContext.sql("select mean(number_trips) mean_num_trips
 average_trips_per_day_with_rain = sqlContext.sql("select rain, mean(number_trips) mean_num_trips from counttrips group by rain")
 average_trips_per_month_with_rain = sqlContext.sql("select month, rain, mean(number_trips) mean_num_trips from counttrips group by month, rain order by month desc")
 
-
+average_trips_per_month_with_rain.show(5)
 
 
 
